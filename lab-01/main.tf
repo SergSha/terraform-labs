@@ -53,7 +53,7 @@ resource "libvirt_cloudinit_disk" "commoninit" {
   name           = "server_cloudinit"
   user_data      = data.template_file.user_data.rendered
   network_config = data.template_file.network_config.rendered
-  pool = libvirt_pool.pool.name
+  pool           = libvirt_pool.pool.name
 }
 
 resource "libvirt_domain" "server" {
@@ -87,7 +87,7 @@ resource "libvirt_domain" "server" {
   }
 
   graphics {
-    type        = "spice"
+    type        = "vnc"
     listen_type = "address"
     autoport    = true
   }
