@@ -41,7 +41,7 @@ resource "libvirt_volume" "server_root" {
 data "template_file" "user_data" {
   template = file("${path.module}/files/cloud_init.cfg")
   vars = {
-    domain_name = "server-example1"
+    domain_name = "server-test1"
   }
 }
 
@@ -57,7 +57,7 @@ resource "libvirt_cloudinit_disk" "commoninit" {
 }
 
 resource "libvirt_domain" "server" {
-  name   = "server-example1"
+  name   = "server-test1"
   memory = 1024
   vcpu   = 2
 
