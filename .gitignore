@@ -1,4 +1,4 @@
-lab-*/.terraform
-lab-*/.terraform.lock.hcl
-lab-*/terraform.tfstate
-lab-*/terraform.tfstate.backup
+**/.terraform/**
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.backup
