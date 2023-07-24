@@ -36,7 +36,7 @@ data "template_file" "network_config" {
 # Install mkisofs
 # https://command-not-found.com/mkisofs
 resource "libvirt_cloudinit_disk" "commoninit" {
-  name           = "${var.domain_name}-cloudinit"
+  name           = "${var.domain_name}-commoninit"
   user_data      = data.template_file.user_data.rendered
   network_config = data.template_file.network_config.rendered
   pool           = var.pool_name
@@ -69,7 +69,7 @@ resource "libvirt_domain" "domain" {
   }
 
   disk {
-    volume_id = libvirt_volume.server_root.id
+    volume_id = libvirt_volume.debian_volume.id
   }
 
   graphics {

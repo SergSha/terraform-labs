@@ -28,3 +28,23 @@ variable "network_zone" {
   description = "Domain DNS Zone"
 }
 
+variable "network_address" {
+  type        = string
+  description = "IP Address"
+}
+
+variable "network_bits" {
+  type        = string
+  description = "Prefix"
+}
+
+variable "network_gateway" {
+  type        = string
+  description = "Network Gateway"
+}
+
+variable "ssh_public_key_path" {
+  type        = string
+  description = "SSH Public Key Path"
+}
+
