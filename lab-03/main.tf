@@ -54,21 +54,21 @@ module "node1" {
   ssh_public_key_path = "/root/.ssh/id_rsa.pub"
 }
 
-#module "node2" {
-#  source = "./domain"
-#
-#  domain_name   = "${local.project_name}-node2"
-#  domain_memory = "2048"
-#  domain_vcpu   = "2"
-#
-#  pool_name = libvirt_pool.pool.name
-#
-#  network_name    = libvirt_network.network.name
-#  network_zone    = local.network_zone
-#  network_address = "10.0.8.12"
-#  network_bits    = "24"
-#  network_gateway = "10.0.8.1"
-#
-#  ssh_public_key_path = "$HOME/.ssh/id_rsa.pub"
-#}
+module "node2" {
+  source = "./domain"
+
+  domain_name   = "${local.project_name}-node2"
+  domain_memory = "2048"
+  domain_vcpu   = "2"
+
+  pool_name = libvirt_pool.pool.name
+
+  network_name    = libvirt_network.network.name
+  network_zone    = local.network_zone
+  network_address = "10.0.8.12"
+  network_bits    = "24"
+  network_gateway = "10.0.8.1"
+
+  ssh_public_key_path = "/root/.ssh/id_rsa.pub"
+}
 
