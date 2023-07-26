@@ -48,3 +48,9 @@ variable "ssh_public_key_path" {
   description = "Path to the SSH public key to use"
 }
 
+variable "source_image" {
+  type        = string
+  default     = "https://cloud.debian.org/images/cloud/cid/daily/latest/debian-cid-genericcloud-amd64-daily.qcow2"
+  description = "Path to source image to use for the images"
+}
+
