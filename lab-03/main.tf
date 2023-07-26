@@ -36,10 +36,48 @@ resource "libvirt_pool" "pool" {
   path = "/QEMU/${local.project_name}"
 }
 
-module "node1" {
+#module "node1" {
+#  source = "./domain"
+#
+#  domain_name   = "${local.project_name}-node1"
+#  domain_memory = "2048"
+#  domain_vcpu   = "2"
+#
+#  pool_name = libvirt_pool.pool.name
+#
+#  network_name    = libvirt_network.network.name
+#  network_zone    = local.network_zone
+#  network_address = "10.0.8.11"
+#  network_bits    = "24"
+#  network_gateway = "10.0.8.1"
+#
+#  ssh_public_key_path = "/root/.ssh/id_rsa.pub"
+#}
+#
+#module "node2" {
+#  source = "./domain"
+#
+#  domain_name   = "${local.project_name}-node2"
+#  domain_memory = "2048"
+#  domain_vcpu   = "2"
+#
+#  pool_name = libvirt_pool.pool.name
+#
+#  network_name    = libvirt_network.network.name
+#  network_zone    = local.network_zone
+#  network_address = "10.0.8.12"
+#  network_bits    = "24"
+#  network_gateway = "10.0.8.1"
+#
+#  ssh_public_key_path = "/root/.ssh/id_rsa.pub"
+#}
+
+module "master" {
+  count = 5
+
   source = "./domain"
 
-  domain_name   = "${local.project_name}-node1"
+  domain_name   = "${local.project_name}-master${count.index}"
   domain_memory = "2048"
   domain_vcpu   = "2"
 
@@ -47,25 +85,7 @@ module "node1" {
 
   network_name    = libvirt_network.network.name
   network_zone    = local.network_zone
-  network_address = "10.0.8.11"
-  network_bits    = "24"
-  network_gateway = "10.0.8.1"
-
-  ssh_public_key_path = "/root/.ssh/id_rsa.pub"
-}
-
-module "node2" {
-  source = "./domain"
-
-  domain_name   = "${local.project_name}-node2"
-  domain_memory = "2048"
-  domain_vcpu   = "2"
-
-  pool_name = libvirt_pool.pool.name
-
-  network_name    = libvirt_network.network.name
-  network_zone    = local.network_zone
-  network_address = "10.0.8.12"
+  network_address = cidrhost("10.0.8.0/24", sum([10, count.index]))
   network_bits    = "24"
   network_gateway = "10.0.8.1"
 
