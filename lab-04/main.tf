@@ -83,3 +83,12 @@ module "nodes" {
   ssh_public_key_path = "/home/user/.ssh/id_rsa.pub"
 }
 
+resource "local_file" "inventory_file" {
+  content = templatefile("${path.module}/templates/inventory.tpl",
+    {
+      masters = module.masters
+      nodes = module.nodes
+    }
+  )
+  filename = "./inventory.ini"
+}
