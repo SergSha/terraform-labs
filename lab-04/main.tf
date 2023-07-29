@@ -39,7 +39,7 @@ resource "libvirt_pool" "pool" {
   path = "/QEMU/${local.project_name}"
 }
 
-module "master" {
+module "masters" {
   count = 3
 
   source = "./domain"
