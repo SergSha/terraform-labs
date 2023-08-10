@@ -3,12 +3,16 @@ terraform {
   required_providers {
     libvirt = {
       source ="dmacvicar/libvirt"
+      version = "0.7.1"
     }
   }
 }
 
 provider "libvirt" {
-  uri = "qemu:///system"
+  # Connect to local KVM hypervisor
+  #uri = "qemu:///system"
+  # Connect to remote KVM hypervisor
+  uri = "qemu+ssh://root@192.168.157.16/system"
 }
 
 resource "libvirt_network" "network" {
